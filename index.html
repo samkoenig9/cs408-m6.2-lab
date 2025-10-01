@@ -1,108 +1,48 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Fancy letterheaded paper</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script type="module" src="js/main.js"></script>
+    
+  </head>
+  <body>
+    <article>
+      <h1 class="logo">Awesome<br>Company</h1>
+      <p class="letter-content">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel rutrum elit. Aliquam consectetur ac mauris eget posuere. Vivamus eleifend mauris vel est molestie, sit amet gravida metus imperdiet. Nulla vehicula est id risus tempor, nec ultrices ipsum lobortis. Sed dictum tortor in scelerisque fringilla. Quisque massa odio, dignissim non hendrerit id, ullamcorper vitae dui. Suspendisse potenti. Vivamus arcu ipsum, volutpat vel lacus et, egestas fermentum ante. Nullam tincidunt lacinia urna ut maximus. Quisque condimentum enim vitae orci semper interdum. Aliquam sodales nisl vitae semper consequat.
+        Duis volutpat magna efficitur, vehicula dolor et, fermentum nisl. Sed sem quam, dictum vitae laoreet at, consectetur eu ante. Sed sollicitudin vulputate scelerisque. Aenean eget diam augue. Aenean bibendum, ipsum ac feugiat tempus, lacus orci fringilla metus, vitae elementum lacus magna nec ligula. Praesent rutrum sapien sed neque placerat consectetur. Sed vel lorem sit amet diam tincidunt sodales. Nam ornare purus ac ante dictum pharetra. Nullam pharetra tortor at pulvinar accumsan. Phasellus facilisis tellus sapien, vel sollicitudin lectus rhoncus sed. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam magna massa, aliquam vitae nibh et, ornare ultrices felis. Vestibulum a sapien augue. Pellentesque id scelerisque leo, id varius orci. Quisque molestie et risus vel mollis.
+        Integer bibendum justo vel elit commodo imperdiet. Nam a sem vulputate, consectetur elit et, convallis elit. Phasellus vulputate metus ac nisl suscipit, ut vulputate arcu tincidunt. Praesent neque ex, euismod vitae eros in, aliquam vulputate elit. Integer tempus eros sit amet justo dapibus, vel vulputate nisi rhoncus. Sed at aliquam odio. Mauris ante nibh, euismod a ornare et, feugiat sed nibh. Quisque sed luctus augue. Duis non sodales justo. Nam consequat semper sodales. Nulla at sem maximus, aliquet orci non, laoreet nunc.
+        Duis congue, arcu in tempor cursus, lorem dui dictum leo, id congue diam odio in elit. Vivamus vel lorem maximus, faucibus leo nec, laoreet diam. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ac imperdiet dui. Pellentesque neque orci, posuere vel molestie vitae, tempor at orci. Morbi enim augue, condimentum suscipit sapien at, ornare dictum nisi. Proin mauris nisi, lacinia non purus in, pretium malesuada nisi. In hac habitasse platea dictumst.
+      </p>
+      <form>
+        <fieldset>
+          <div>
+            <input type="radio" id="opt1" name="select" value="opt1" checked/>
+            <label for="opt1">Option 1</label>
 
-<head>
-  <meta charset="utf-8">
-  <title>Hello World!</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="shortcut icon" href="img/favicon.ico">
-</head>
+            <input type="radio" id="opt2" name="select" value="opt2" />
+            <label for="opt2">Option 2</label>
 
-<body>
-  <h1>HTML Rocks!</h1>
-  <p>
-    <button  onclick="helloWorld()">Prints Hello World to the Developer console</button>
-  </p>
-  <hr>
-  <form id="addForm">
-    <label for="num1">Number 1:</label>
-    <input type="number" id="num1" name="num1" required>
-    <br>
-    <label for="num2">Number 2:</label>
-    <input type="number" id="num2" name="num2" required>
-    <br>
-    <button type="submit">Add Numbers</button>
-  </form>
-
-  <label id="result">Result:</label>
-
-  <hr>
-
-  <button id="jokeButton">Get a Random Joke</button>
-  <p id="joke"></p>
-
-  <hr>
-  <button id="jokeButtonTable">Get a  5 Random Jokes</button>
-  <table id="jokeTable"></table>
-
-  <script type="module" script="js/main.js">
-    import {helloWorld, add, fetchRandomJoke, fetch5RandomJokes} from './js/main.js';
-
-    // This shows how to assign a function to the window object
-    // so that it can be called from the browser console
-    window.helloWorld = helloWorld;
-
-    // This shows how to add an event listener to a button in the HTML
-    // and call a function when the button is clicked
-    const form = document.getElementById('addForm');
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      const num1 = parseFloat(document.getElementById('num1').value);
-      const num2 = parseFloat(document.getElementById('num2').value);
-      try{
-        const result = add(num1, num2);
-        document.getElementById('result').textContent = `Result: ${result}`;
-      }catch(e){
-        console.error(e);
-        document.getElementById('result').textContent = `Error: ${e.message}`;
-      }
-
-    });
-
-    // this shows how to add an event listener to a button in the HTML
-    // that calls a function that fetches a random joke from an API
-    // and displays it on the page
-    const jokebtn = document.getElementById('jokeButton');
-    const jokeresult = document.getElementById('joke');
-    jokebtn.addEventListener('click', async () => {
-      try {
-        jokeresult.textContent = 'Loading...';
-        const joke = await fetchRandomJoke();
-        document.getElementById('joke').textContent = joke;
-      } catch (e) {
-        console.error(e);
-        document.getElementById('joke').textContent = `Error: ${e.message}`;
-      }
-    });
-
-    // this shows how to add an event listener to a button in the HTML
-    // that calls a function that fetches 5 random jokes from an API
-    // and displays them in a table on the page
-    const jokeTableBtn = document.getElementById('jokeButtonTable');
-    const jokeTable = document.getElementById('jokeTable');
-    jokeTableBtn.addEventListener('click', async () => {
-      try {
-        jokeTable.textContent = 'Loading...';
-        const joke = await fetch5RandomJokes();
-        jokeTable.innerHTML = `
-              <thead>
-              <tr>
-                <th>Joke</th>
-              </tr>
-              </thead>
-              <tbody>
-              ${joke.map(j => `<tr><td>${j}</td></tr>`).join('')}
-              </tbody>
-            `;
-      } catch (e) {
-        console.error(e);
-        document.getElementById('joke').textContent = `Error: ${e.message}`;
-      }
-    });
-  </script>
-
-</body>
-
+            <input type="radio" id="opt3" name="select" value="opt" />
+            <label for="opt3">Option 3</label>
+          </div>
+          <div>
+            <button type="submit">Submit</button>
+          </div>
+        </fieldset>
+      </form>
+      <br>
+      <address>
+        <p>The Awesome Company</p>
+        <p>102-112 Frail Bend Bridge<br>
+        The Dwindlings<br>
+        Little Hornet<br>
+        HX3 9ZQ<br>
+        UK</p>
+      </address>
+    </article>
+  </body>
 </html>

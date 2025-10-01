@@ -62,3 +62,15 @@ export async function fetch5RandomJokes() {
         throw new Error(error.message);
     }
 }
+
+if (typeof document !== 'undefined') {
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.querySelector('form');
+        form.addEventListener('submit', function(event) {
+            const selected = form.querySelector('input[name="select"]:checked');
+            const label = document.querySelector('label[for="' + selected.id + '"]');
+            const text = label ? label.textContent.trim() : selected.value;
+            alert(text);
+        });
+    });
+}
